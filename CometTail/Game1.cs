@@ -23,44 +23,34 @@ namespace CometTail
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // Comet variables
-        private Texture2D cometTex;
-        private Vector2 cometPos;
-        private Rectangle cometRect;
-
         // State handling
         private GameState currentState;
         private GameState previousState;
 
         // Device states
         private KeyboardState currentkbState;
-        private KeyboardState previouskbState;
         private Keys currentKey;
-        private Keys prevKey;
-        private MouseState mouseState;
 
         // Screen Resolution
         private int screenHeight;
-        private int screenWidth;        
-
-        // Physics
-        private Vector2 acceleration;
-        private Vector2 velocity;
+        private int screenWidth;
         
-        // ** DEBUG VARIABLES **
-        // Debug Text
-        private string posText;
-        private string buttonText;
-        private SpriteFont centaur32;
-
-        private bool followMouse;
-
         // ** ASSETS ** 
         // Background
         // Comet
         private Comet comet;
 
+        private Texture2D cometTex;
+        private Rectangle cometRect;
+
         // Planets
+
+
+        // ** DEBUG VARIABLES **
+        // Debug Text
+        private string posText;
+        private string buttonText;
+        private SpriteFont centaur32;
 
         public Game1()
         {
@@ -78,15 +68,6 @@ namespace CometTail
             screenHeight = _graphics.PreferredBackBufferHeight;
             screenWidth = _graphics.PreferredBackBufferWidth;
 
-            velocity = new Vector2(0,0);
-            acceleration = new Vector2(0, 0);
-
-            prevKey = Keys.D;
-
-            followMouse = true;
-
-            
-
             /*_graphics.ToggleFullScreen();*/
 
             base.Initialize();
@@ -96,18 +77,17 @@ namespace CometTail
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Comet values
             cometTex = Content.Load<Texture2D>("Comet");
-
             cometRect = new Rectangle(40,
                                       _graphics.PreferredBackBufferHeight/2 - cometTex.Height,
                                       cometTex.Width,
                                       cometTex.Height);
 
 
+            // Initialize the font and the comet object
             centaur32 = Content.Load<SpriteFont>("centaur-32");
             comet = new Comet(cometTex, cometRect);
-
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -115,8 +95,10 @@ namespace CometTail
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            // Update keyboard state each frame for debug test
             currentkbState = Keyboard.GetState();
             
+            // Save the current key being pressed for debug test
             if (currentkbState.IsKeyDown(Keys.D))
             {
                 currentKey = Keys.D;
@@ -126,12 +108,14 @@ namespace CometTail
                 currentKey = Keys.A;
             }
 
+            // Delta time variable
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            // Update and check bounds of the comet
             comet.Update(gameTime, dt);
             CheckBounds(comet);
 
-            // DEBUG : Show position in text
+            // DEBUG : Show position and current button being mashed in text
             posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ")";
             buttonText = currentKey.ToString();
 
@@ -171,42 +155,50 @@ namespace CometTail
 
             _spriteBatch.Begin();
 
+            // Draw the player comet
             comet.Draw(_spriteBatch);
 
+            // Debug text
             _spriteBatch.DrawString(centaur32, posText, Vector2.Zero, Color.Black);
             _spriteBatch.DrawString(centaur32, buttonText, new Vector2(20, screenHeight - 40), Color.Black);
 
             _spriteBatch.End();
 
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Keep the Comet from going beyond the screen boundaries
+        /// </summary>
+        /// <param name="comet">Comet Gameobject</param>
         private void CheckBounds(Comet comet)
         {
             // Y axis boundaries 
             if (comet.PositionY < 0 ||
                 comet.PositionY + cometRect.Height > screenHeight)
             {
+                // Top boundary
                 if (comet.PositionY < 0)
                 {
                     comet.PositionY = 0;
                     return;
                 }
 
+                // Bottom boundary 
                 comet.PositionY = screenHeight - cometTex.Height;
             }
 
             // X axis boundaries
             if (comet.PositionX < 0 || comet.PositionX + cometRect.Width > screenWidth)
             {
+                // Left Boundary
                 if (comet.PositionX < 0)
                 {
                     comet.PositionX = 0;
                     return;
                 }
 
+                // TODO: Remove screen wrapping
                 comet.PositionX = 20;
             }
         }

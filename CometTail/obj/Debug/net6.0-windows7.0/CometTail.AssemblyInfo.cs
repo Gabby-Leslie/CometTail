@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CometTail")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf17f00b79366e1a28b3e6ded4899e1a7063aadf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78f508cc6f207429c21da9808bb575b98e510e65")]
 [assembly: System.Reflection.AssemblyProductAttribute("CometTail")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CometTail")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

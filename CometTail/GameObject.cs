@@ -17,6 +17,9 @@ namespace CometTail
         protected float gravForce;
         protected float mass;
 
+        protected Vector2 center;
+        protected float radius;
+
         // Properties
         /// <summary>
         /// Read-only property for texture
@@ -33,6 +36,14 @@ namespace CometTail
         {
             get { return position; }
             set { position = value; }
+        }
+        public Vector2 Center
+        {
+            get { return center; }
+        }
+        public float Radius
+        {
+            get { return radius; }
         }
 
         // Constructors
@@ -53,6 +64,11 @@ namespace CometTail
         /// </summary>
         /// <param name="gameTime">Game Time</param>
         public abstract void Update(GameTime gameTime, float dt);
+
+        public virtual void Instersects(GameObject collidable)
+        {
+            
+        }
 
         /// <summary>
         /// Draw GameObject to the window

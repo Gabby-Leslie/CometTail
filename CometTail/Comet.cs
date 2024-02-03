@@ -50,9 +50,14 @@ namespace CometTail
 
             velocity = Vector2.Zero;
             acceleration = Vector2.Zero;
+            mass = 5;
             friction = 0.01f;
 
             previousKey = Keys.D;
+
+            center.X = pos.X + (texture.Width / 2);
+            center.Y = pos.Y + (texture.Height / 2);
+            radius = texture.Width / 2;
         }
 
         // Methods

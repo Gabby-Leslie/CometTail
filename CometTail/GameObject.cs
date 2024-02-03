@@ -30,6 +30,7 @@ namespace CometTail
         public Rectangle Position
         {
             get { return position; }
+            set { position = value; }
         }
 
         // Constructors
@@ -49,7 +50,7 @@ namespace CometTail
         /// Update frames
         /// </summary>
         /// <param name="gameTime">Game Time</param>
-        public abstract void Update(GameTime gameTime);
+        public abstract void Update(GameTime gameTime, float dt);
 
         /// <summary>
         /// Draw GameObject to the window

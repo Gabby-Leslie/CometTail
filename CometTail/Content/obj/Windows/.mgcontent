@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg1.png</File>
+    <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg2.png</File>
+    <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/centaur-32.spritefont</File>
+    <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Comet.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

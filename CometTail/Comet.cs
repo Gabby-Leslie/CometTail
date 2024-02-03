@@ -34,6 +34,8 @@ namespace CometTail
         /// </summary>
         public float PositionY { get { return pos.Y; } set { pos.Y = value; } }
 
+        public float Velocity { set { velocity.X = value; } }
+
         // Constructor
         /// <summary>
         /// Instantiates Comet class fields

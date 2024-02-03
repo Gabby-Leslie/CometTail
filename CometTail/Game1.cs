@@ -195,6 +195,7 @@ namespace CometTail
                 if (comet.PositionX < 0)
                 {
                     comet.PositionX = 0;
+                    comet.Velocity = 0;
                     return;
                 }
 

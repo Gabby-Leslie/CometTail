@@ -14,6 +14,8 @@ namespace CometTail
         // Fields
         protected Texture2D texture;
         protected Rectangle position;
+        protected float gravForce;
+        protected float mass;
 
         // Properties
         /// <summary>

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.DirectWrite;
 using System;
+using System.Collections.Generic;
 
 namespace CometTail
 {
@@ -50,18 +51,20 @@ namespace CometTail
         private Texture2D planetTex;
         private Rectangle planetRect;
 
+        private List<Obstacle> planets;
+
 
         // ** DEBUG VARIABLES **
         // Debug Text
         private string posText;
         private string buttonText;
-        private SpriteFont centaur32;
+        public SpriteFont centaur32;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = false;
+            IsMouseVisible = true;
 
             // Change window size
             _graphics.PreferredBackBufferWidth = 1280;    // Width size
@@ -74,6 +77,7 @@ namespace CometTail
             screenWidth = _graphics.PreferredBackBufferWidth;
 
             /*_graphics.ToggleFullScreen();*/
+            planets = new List<Obstacle>();
 
             base.Initialize();
         }
@@ -97,7 +101,7 @@ namespace CometTail
             planetTex = Content.Load<Texture2D>("Obstacle");
             planetRect = new Rectangle(300,                                 // X pos
                                        screenHeight/2 - planetTex.Height,   // Y pos
-                                       planetTex.Width, planetTex.Height);  // Rectangle Width and Height
+                                       planetTex.Width * 3, planetTex.Height * 3);  // Rectangle Width and Height
 
             planet = new Obstacle(planetTex, planetRect);
 
@@ -131,10 +135,38 @@ namespace CometTail
 
             CheckBounds(comet);
             CheckInterect(comet, planet);
+            if ((comet.Center - planet.Center).Length() < planet.Radius * 6)
+            {
+                System.Diagnostics.Debug.WriteLine("Gravitas");
+                comet.ApplyForce(planet.Center - comet.Pos);
+            }
+            
+
+            
+
+
+
+
+
+
+
+
+
+
+
 
             // DEBUG : Show position and current button being mashed in text
-            posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ")";
+            posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ") - " + comet.Velocity;
             buttonText = currentKey.ToString();
+
+
+
+
+
+
+
+
+
 
             // Game Loop switch statement
             switch (currentState)
@@ -230,7 +262,7 @@ namespace CometTail
         {
             if ((obj1.Center - obj2.Center).Length() < (obj1.Radius + obj2.Radius))
             {
-                System.Diagnostics.Debug.WriteLine("Colliding");
+                //System.Diagnostics.Debug.WriteLine("Colliding");
             }
         }
     }

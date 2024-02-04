@@ -29,14 +29,24 @@ namespace CometTail
             pos.Y = position.Y;
 
             radius = texture.Width / 2;
-            center.X = pos.X + (texture.Width / 2);
-            center.Y = pos.Y + (texture.Height / 2);
+            
         }
 
         // Methods
         public override void Update(GameTime gameTime, float dt)
         {
-            
+            center.X = pos.X + (texture.Width / 2);
+            center.Y = pos.Y + (texture.Height / 2);
+
+            position.X = (int)pos.X;
+            position.Y = (int)pos.Y;
+
+            pos.X -= 0.5f;
+
+            if (pos.X + texture.Width < 0)
+            {
+                pos.X = 500;
+            }
         }
 
         public override void Draw(SpriteBatch sb)

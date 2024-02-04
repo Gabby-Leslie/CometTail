@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.DirectWrite;
 using System;
+using System.Data;
 using System.Net.NetworkInformation;
+using System.Security.Policy;
 
 namespace CometTail
 {
@@ -15,6 +17,7 @@ namespace CometTail
         private Vector2 velocity;
         private Vector2 acceleration;
         private float friction;
+        private Vector2 totalForce;
 
         // Device input
         private MouseState mouseState;
@@ -34,7 +37,9 @@ namespace CometTail
         /// </summary>
         public float PositionY { get { return pos.Y; } set { pos.Y = value; } }
 
-        public float Velocity { set { velocity.X = value; } }
+        public Vector2 Pos { get { return pos; } }
+
+        public float Velocity { get { return velocity.X; } set { velocity.X = value; } }
 
         // Constructor
         /// <summary>
@@ -50,7 +55,7 @@ namespace CometTail
 
             velocity = Vector2.Zero;
             acceleration = Vector2.Zero;
-            mass = 5;
+            mass = 0.5f;
             friction = 0.01f;
 
             previousKey = Keys.D;
@@ -73,12 +78,6 @@ namespace CometTail
             currentkbState = Keyboard.GetState();
             mouseState = Mouse.GetState();
 
-            // Cap velocity at 1000
-            if (velocity.X > 1000)
-            {
-                velocity.X = 1000;
-            }
-
             #region Debug - Mouse follow switch
             /*if (currentkbState.IsKeyDown(Keys.M) && previouskbState.IsKeyUp(Keys.M))
             {
@@ -92,16 +91,25 @@ namespace CometTail
             #endregion
 
             // Move the y pos of the comet with the y pos of the mouse
-            pos.Y = mouseState.Y;
+            /*pos.Y = mouseState.Y;*/
 
             // Update velocity
-            velocity.X += acceleration.X * dt;
+            /*velocity.X += acceleration.X * dt;*/
+            velocity += acceleration * dt;
+
+            // Cap velocity at 500
+            if (velocity.X > 500)
+            {
+                velocity.X = 500;
+            }
 
             // Update position based on velocity
             pos.X += velocity.X * dt;
             pos.Y += velocity.Y * dt;
 
-            // Check Keyboard input //
+            //ApplyForce(mouseState.Position.Y - pos.Y);
+
+            #region // Check Keyboard input // 
             // D mash - Check for one frame of D being pressed
             if (currentkbState.IsKeyDown(Keys.D) && previouskbState.IsKeyUp(Keys.D))
             {
@@ -135,11 +143,30 @@ namespace CometTail
 
                 // Move the comet backwards when the player is not mashing
                 acceleration.X = 0;
-                velocity.X -= 4f;
+                //velocity.X -= 4f;
+            }
+            #endregion
+
+            if (currentkbState.IsKeyDown(Keys.Up))
+            {
+                pos.Y -= 5f;
+            }
+            else if (currentkbState.IsKeyDown(Keys.Down))
+            {
+                pos.Y += 5f;
             }
 
             // Deaccelerate beacuse of friction
             velocity.X -= (float)(velocity.X * friction);
+
+
+
+            // *** Build the totalForce
+            // TODO add forces the comet experience to get total force
+
+
+            ApplyForce(totalForce);
+
 
 
             #region DEBUG
@@ -161,6 +188,21 @@ namespace CometTail
         public override void Draw(SpriteBatch sb)
         {
             sb.Draw(texture, Position, Color.White);
+        }
+
+        public void CalculateForce(Vector2 force)
+        {
+            totalForce += force;
+        }
+
+        public void ApplyForce(Vector2 force)
+        {
+            acceleration = force / mass;
+        }
+
+        public void ApplyForce(float force)
+        {
+            acceleration.Y = force / mass;
         }
 
     }

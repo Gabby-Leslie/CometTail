@@ -8,8 +8,10 @@
     <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg2.png</File>
     <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/centaur-32.spritefont</File>
     <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Comet.png</File>
+    <File>C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Obstacle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

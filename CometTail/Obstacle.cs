@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace CometTail
 {
-    internal class Obstacles : GameObject
+    internal class Obstacle
+        : GameObject
     {
         // Fields
         private Vector2 pos;
@@ -22,15 +23,25 @@ namespace CometTail
         /// </summary>
         /// <param name="texture"></param>
         /// <param name="position"></param>
-        public Obstacles(Texture2D texture, Rectangle position) : base(texture, position)
+        public Obstacle(Texture2D texture, Rectangle position) : base(texture, position)
         {
+            pos.X = position.X;
+            pos.Y = position.Y;
 
+            radius = texture.Width / 2;
+            center.X = pos.X + (texture.Width / 2);
+            center.Y = pos.Y + (texture.Height / 2);
         }
 
         // Methods
         public override void Update(GameTime gameTime, float dt)
         {
-            throw new NotImplementedException();
+            
+        }
+
+        public override void Draw(SpriteBatch sb)
+        {
+            sb.Draw(texture, Position, Color.White);
         }
     }
 }

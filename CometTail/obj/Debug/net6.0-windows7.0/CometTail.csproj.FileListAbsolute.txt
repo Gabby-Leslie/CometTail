@@ -40,3 +40,4 @@ C:\Users\NuggetPC\Documents\CometTail\CometTail\obj\Debug\net6.0-windows7.0\refi
 C:\Users\NuggetPC\Documents\CometTail\CometTail\obj\Debug\net6.0-windows7.0\CometTail.pdb
 C:\Users\NuggetPC\Documents\CometTail\CometTail\obj\Debug\net6.0-windows7.0\CometTail.genruntimeconfig.cache
 C:\Users\NuggetPC\Documents\CometTail\CometTail\obj\Debug\net6.0-windows7.0\ref\CometTail.dll
+C:\Users\NuggetPC\Documents\CometTail\CometTail\bin\Debug\net6.0-windows7.0\Content\Obstacle.xnb

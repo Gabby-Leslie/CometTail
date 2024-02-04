@@ -3,3 +3,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg2.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Content/Bg2.xnb","TextureProcessor","Texture2DContent",4659,3686485,0.107069
 "C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/centaur-32.spritefont","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Content/centaur-32.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.1356316
 "C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Comet.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Content/Comet.xnb","TextureProcessor","Texture2DContent",81,485,0.0016984
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Obstacle.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Content/Obstacle.xnb","TextureProcessor","Texture2DContent",292,10085,0.1745881

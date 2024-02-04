@@ -55,8 +55,6 @@ namespace CometTail
 
             previousKey = Keys.D;
 
-            center.X = pos.X + (texture.Width / 2);
-            center.Y = pos.Y + (texture.Height / 2);
             radius = texture.Width / 2;
         }
 
@@ -66,6 +64,10 @@ namespace CometTail
             // Update the position every frame
             position.X = (int)pos.X;
             position.Y = (int)pos.Y;
+
+            // Update the center coord every frame
+            center.X = pos.X + (texture.Width / 2);
+            center.Y = pos.Y + (texture.Height / 2);
 
             // Get update user device input
             currentkbState = Keyboard.GetState();
@@ -144,7 +146,7 @@ namespace CometTail
             // Pause here at any given moment
             if (currentkbState.IsKeyDown(Keys.U))
             {
-                Console.WriteLine("Hello");
+                System.Diagnostics.Debug.WriteLine("Hello");
             }
             #endregion
 

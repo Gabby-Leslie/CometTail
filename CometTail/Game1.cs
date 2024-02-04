@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.DirectWrite;
+using System;
 
 namespace CometTail
 {
@@ -44,6 +45,10 @@ namespace CometTail
         private Rectangle cometRect;
 
         // Planets
+        private Obstacle planet;
+
+        private Texture2D planetTex;
+        private Rectangle planetRect;
 
 
         // ** DEBUG VARIABLES **
@@ -79,15 +84,24 @@ namespace CometTail
 
             // Comet values
             cometTex = Content.Load<Texture2D>("Comet");
-            cometRect = new Rectangle(40,
-                                      _graphics.PreferredBackBufferHeight/2 - cometTex.Height,
-                                      cometTex.Width,
-                                      cometTex.Height);
+            cometRect = new Rectangle(40,                                   // X pos
+                                      screenHeight/2 - cometTex.Height,     // Y pos
+                                      cometTex.Width,                       // Rectangle Width
+                                      cometTex.Height);                     // Rectangle Height
 
 
-            // Initialize the font and the comet object
-            centaur32 = Content.Load<SpriteFont>("centaur-32");
+            // Initialize the font and the comet object            
             comet = new Comet(cometTex, cometRect);
+
+            // Planet Values
+            planetTex = Content.Load<Texture2D>("Obstacle");
+            planetRect = new Rectangle(300,                                 // X pos
+                                       screenHeight/2 - planetTex.Height,   // Y pos
+                                       planetTex.Width, planetTex.Height);  // Rectangle Width and Height
+
+            planet = new Obstacle(planetTex, planetRect);
+
+            centaur32 = Content.Load<SpriteFont>("centaur-32");
         }
 
         protected override void Update(GameTime gameTime)
@@ -113,7 +127,10 @@ namespace CometTail
 
             // Update and check bounds of the comet
             comet.Update(gameTime, dt);
+            planet.Update(gameTime, dt);
+
             CheckBounds(comet);
+            CheckInterect(comet, planet);
 
             // DEBUG : Show position and current button being mashed in text
             posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ")";
@@ -160,6 +177,9 @@ namespace CometTail
             // Draw the player comet
             comet.Draw(_spriteBatch);
 
+            // Draw the planet
+            planet.Draw(_spriteBatch);
+
             // Debug text
             _spriteBatch.DrawString(centaur32, posText, Vector2.Zero, Color.Black);
             _spriteBatch.DrawString(centaur32, buttonText, new Vector2(20, screenHeight - 40), Color.Black);
@@ -203,6 +223,14 @@ namespace CometTail
 
                 // TODO: Remove screen wrapping
                 comet.PositionX = 20;
+            }
+        }
+
+        private void CheckInterect(GameObject obj1, GameObject obj2)
+        {
+            if ((obj1.Center - obj2.Center).Length() < (obj1.Radius + obj2.Radius))
+            {
+                System.Diagnostics.Debug.WriteLine("Colliding");
             }
         }
     }

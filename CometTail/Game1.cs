@@ -78,6 +78,7 @@ namespace CometTail
 
             /*_graphics.ToggleFullScreen();*/
             planets = new List<Obstacle>();
+            Mouse.SetPosition(screenWidth / 2, screenHeight / 2);
 
             base.Initialize();
         }
@@ -100,8 +101,8 @@ namespace CometTail
             // Planet Values
             planetTex = Content.Load<Texture2D>("Obstacle");
             planetRect = new Rectangle(300,                                 // X pos
-                                       screenHeight/2 - planetTex.Height,   // Y pos
-                                       planetTex.Width * 3, planetTex.Height * 3);  // Rectangle Width and Height
+                                       screenHeight/2 + 100,   // Y pos
+                                       planetTex.Width, planetTex.Height);  // Rectangle Width and Height
 
             planet = new Obstacle(planetTex, planetRect);
 
@@ -115,7 +116,7 @@ namespace CometTail
 
             // Update keyboard state each frame for debug test
             currentkbState = Keyboard.GetState();
-            
+
             // Save the current key being pressed for debug test
             if (currentkbState.IsKeyDown(Keys.D))
             {
@@ -133,40 +134,25 @@ namespace CometTail
             comet.Update(gameTime, dt);
             planet.Update(gameTime, dt);
 
+            // Bound checking and collision detection
             CheckBounds(comet);
             CheckInterect(comet, planet);
-            if ((comet.Center - planet.Center).Length() < planet.Radius * 6)
+
+            // Planet gravity
+            if ((comet.Center - planet.Center).Length() < planet.Radius * 2)
             {
-                System.Diagnostics.Debug.WriteLine("Gravitas");
-                comet.ApplyForce(planet.Center - comet.Pos);
+                comet.ApplyForce((planet.Center - comet.Center)); 
             }
-            
 
-            
-
-
-
-
-
-
-
-
-
-
-
+            // DEBUG PAUSE WITH B
+            if (currentkbState.IsKeyDown(Keys.B))
+            {
+                System.Diagnostics.Debug.WriteLine("h");
+            }
 
             // DEBUG : Show position and current button being mashed in text
-            posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ") - " + comet.Velocity;
+            posText = "(" + ((int)comet.PositionX) + ", " + ((int)comet.PositionY) + ") - " + (int)comet.VelocityX + ", " + (int)comet.VelocityY;
             buttonText = currentKey.ToString();
-
-
-
-
-
-
-
-
-
 
             // Game Loop switch statement
             switch (currentState)
@@ -194,8 +180,6 @@ namespace CometTail
                     break;
 
             }
-
-
 
             base.Update(gameTime);
         }
@@ -235,6 +219,7 @@ namespace CometTail
                 if (comet.PositionY < 0)
                 {
                     comet.PositionY = 0;
+                    comet.VelocityY = 0;
                     return;
                 }
 
@@ -249,7 +234,7 @@ namespace CometTail
                 if (comet.PositionX < 0)
                 {
                     comet.PositionX = 0;
-                    comet.Velocity = 0;
+                    comet.VelocityX = 0;
                     return;
                 }
 
@@ -258,10 +243,17 @@ namespace CometTail
             }
         }
 
+        /// <summary>
+        /// Check if the comet and a planet collide
+        /// </summary>
+        /// <param name="obj1">Comet or planet</param>
+        /// <param name="obj2">Comet or Planet</param>
         private void CheckInterect(GameObject obj1, GameObject obj2)
         {
+            // Check if the distance between the centers are less than the sum of the radii
             if ((obj1.Center - obj2.Center).Length() < (obj1.Radius + obj2.Radius))
             {
+                // If so, they are colliding
                 //System.Diagnostics.Debug.WriteLine("Colliding");
             }
         }

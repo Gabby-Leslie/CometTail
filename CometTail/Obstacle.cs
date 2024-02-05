@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using SharpDX.DirectWrite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Net.NetworkInformation;
+using System.Security.Policy;
 
 namespace CometTail
 {
@@ -41,11 +42,28 @@ namespace CometTail
             position.X = (int)pos.X;
             position.Y = (int)pos.Y;
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                pos.Y-=5;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                pos.Y+=5;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                pos.X-=5;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                pos.X+=5;
+            }
+
             pos.X -= 0.5f;
 
             if (pos.X + texture.Width < 0)
             {
-                pos.X = 500;
+                pos.X = 1000;
             }
         }
 

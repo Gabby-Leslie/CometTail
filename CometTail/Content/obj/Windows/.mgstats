@@ -1,6 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg1.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Bg1.xnb","TextureProcessor","Texture2DContent",5744,3686485,0.3311302
-"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg2.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Bg2.xnb","TextureProcessor","Texture2DContent",4659,3686485,0.1124587
-"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/centaur-32.spritefont","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/centaur-32.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.1610812
-"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Comet.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Comet.xnb","TextureProcessor","Texture2DContent",81,485,0.0018638
-"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Obstacle.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Obstacle.xnb","TextureProcessor","Texture2DContent",292,10085,0.0015729
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg1.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Bg1.xnb","TextureProcessor","Texture2DContent",5744,3686485,0.3485608
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Bg2.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Bg2.xnb","TextureProcessor","Texture2DContent",4659,3686485,0.1489949
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/centaur-32.spritefont","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/centaur-32.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.1643775
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Comet.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Comet.xnb","TextureProcessor","Texture2DContent",81,485,0.002773
+"C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/Obstacle.png","C:/Users/NuggetPC/Documents/CometTail/CometTail/Content/bin/Windows/Obstacle.xnb","TextureProcessor","Texture2DContent",2176,810085,0.0479819
